@@ -1,0 +1,148 @@
+<div class="grid-content-container">
+  <div
+    class="flex flex-wrap container-padding-x"
+    v-for="(container, idx) in contentContainer"
+  >
+    <div
+      v-for="(content, index) in contentContainer[idx]"
+      :ref="`grid-${idx}`"
+      :key="index"
+      class="slide cursor-pointer sm:w-1/4 md:w-1/6 lg:w-1/8 mt-8"
+      :class="{selected: markSlideSelected(content, idx)}"
+      :style="setBackgroundImage(content.Poster)"
+      :data-index="index"
+      :data-container-index="idx"
+      v-mouse:mouseover="{position: 1, handler: onMouseShowShowcase}"
+      v-mouse:mouseout="{position: 1, handler: unselectSlide}"
+      @click="onClickSlide(content, idx)"
+    >
+      <div
+        class="slide hidden-element w-full h-full"
+        :data-index="index"
+        :data-container-index="idx"
+        v-on:mouseleave="hideShowcase"
+        :style="setBackgroundImage(content.Banner)"
+        style="background-size: 100% 100%"
+      >
+        <div class="flex flex-col justify-end p-1 w-full h-full">
+          <div class="flex flex-col text-white" style="transform: scaleX(0.4) translateX(-70%)">
+            <span>
+              <i class="fa fa-play-circle text-4xl" />
+            </span>
+            <div class="font-black text-white">
+              {{ content.Title }}
+            </div>
+            <div class="text-xs">
+              <span class="text-green-400 font-semibold mr-2">
+                {{ content.Year }}
+              </span>
+              <span class="border rounded px-1 mr-2 text-center">{{ content.Rated }}</span>
+              <span> 
+                {{ content.Runtime }}
+              </span>
+            </div>
+            <div class="text-xs">
+              <span class="mr-2"> {{ content.Genre }} </span>
+            </div>
+          </div>
+          <div class="text-center">
+            <div
+              class="showcase-action"
+            >
+              <i class="fa fa-angle-down" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <transition name="fade">
+      <div
+        v-if="selectedSlideContainer[idx]"
+        class="movie-detail-container movie-detail-container__grid" 
+        style="background-color: white; padding: 0!important"
+      >
+        <transition name="fade-transition">
+          <div
+            class="w-full h-full movie-detail-background"
+            :style="setBackgroundImage(selectedSlide.Banner)"
+          >
+            <div
+              class="h-full flex flex-col justify-between"
+              style="background-image: linear-gradient(90deg, black 30%, transparent);"
+            >
+              <div>
+                <div class="w-full flex justify-end">
+                  <div
+                    class="mr-4 mt-2 cursor-pointer"
+                    @click="closeSelectedSlide"
+                  >
+                    <i class="text-white text-4xl fa fa-close" style="text-shadow: #000000 0 0 20px;" />
+                  </div>
+                </div>
+                <div class="text-white movie-detail-caption w-6/12 text-5xl font-bold">
+                  {{ selectedSlide.Title }}
+                </div>
+                <transition name="fade-transition">
+                  <div
+                    class="tab-1"
+                    v-if="selectedDetailMenu === 'overview'"
+                  >
+                    <div class="movie-detail-caption w-5/12 cursor-default">
+                      <div class="font-semibold text-white">
+                        <span class="mr-2"> {{ selectedSlide.Year }} </span>
+                        <span class="border px-1 mr-2">{{ selectedSlide.Rated }}</span>
+                        <span> {{ selectedSlide.Runtime }} </span>
+                      </div>
+                      <div class="mt-4">
+                        {{ selectedSlide.Plot }}
+                      </div>
+                      <div class="mt-4">
+                        <span class="font-bold"> Pemeran: </span> 
+                        <span> {{ selectedSlide.Actors}} </span>
+                      </div>
+                      <div>
+                        <span class="font-bold"> Genre: </span> 
+                        <span> {{ selectedSlide.Genre}} </span>
+                      </div>
+                    </div>
+                  </div>
+                </transition>
+                <transition name="fade-transition">
+                  <div
+                    class="tab-2"
+                    v-if="selectedDetailMenu === 'trailer'"
+                  >
+                    <div class="movie-detail-caption cursor-default">
+                      <div class="text-white text-4xl font-bold"> Trailer </div>
+                    </div>
+                  </div>
+                </transition>
+                <transition name="fade-transition">
+                  <div
+                    class="tab-3"
+                    v-if="selectedDetailMenu === 'details'"
+                  >
+                    <div class="movie-detail-caption cursor-default">
+                      <div class="text-white text-4xl font-bold"> Details </div>
+                    </div>
+                  </div>
+                </transition>
+              </div>
+              <div class="w-full font-bold text-white uppercase flex justify-center cursor-pointer">
+                <div
+                  v-for="(menu, index) in detailMenus"
+                  :key="index"
+                  class="mx-2 movie-detail-menu-item"
+                  :class="{selected: menu === selectedDetailMenu}"
+                  @click="selectedDetailMenu = menu"
+                >
+                  {{ menu }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
+    </transition>
+  </div>
+</div>

@@ -1,0 +1,356 @@
+// Import Global CSS Styling
+@import 'variable', 'function';
+
+html {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  background-color: #141414;
+  color: white;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Medium Devices, Desktops */
+@mixin md-screen {
+  @media only screen and (max-width : 1024px) {
+    @content;
+  }
+}
+
+/* Small Devices, Tablets */
+@mixin sm-screen {
+  @media only screen and (max-width : 768px) {
+    @content;
+  }
+}
+
+/* Extra small devices */
+@mixin xs-screen {
+  @media only screen and (max-width : 480px) {
+    @content;
+  }
+}
+
+.slider-content-container {
+  --duration: 0.5s;
+  --cubic-bezier: cubic-bezier( 0.5 , 0, 0.1 ,1);
+  position: relative;
+}
+
+.slider-content-container * {
+  box-sizing: border-box;
+}
+
+.grid-content-container {
+  --duration: 0.5s;
+  --cubic-bezier: cubic-bezier( 0.5 , 0, 0.1 ,1);
+  position: relative;
+}
+
+.grid-content-container * {
+  box-sizing: border-box;
+}
+
+.slide-button {
+  width: $button-width;
+  height: slide-height(slide-width(8));
+  background: linear-gradient(to bottom, transparent 2.5%, black 2.5%, black 97.5%, black 2.5%, transparent 2.5%);
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+  transition: opacity .1s;
+
+  &:hover {
+    opacity: .8;
+    transition: opacity .1s;
+  }
+}
+
+.slide-button > .fa {
+  color:grey;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.slide-button.slide-button--left {
+  left: 0;
+}
+
+.slide-button.slide-button--right {
+  right: 0;
+}
+
+/* Showcase */
+.showcase {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform var(--duration) var(--cubic-bezier), opacity .5s, visibility .4s .5s;
+  will-change: transform;
+  z-index: 10;
+
+  .showcase-body {
+    @apply w-full h-full;
+    opacity: 1;
+    transition: opacity var(--duration) var(--cubic-bezier);
+
+    .showcase-body-theatrical {
+      @apply flex absolute h-full w-full;
+    }
+
+    .showcase-body-caption-container {
+      @apply flex flex-col justify-end p-1 w-full h-full;
+      opacity: 0;
+      transition: opacity var(--duration) ;
+
+      .showcase-body-caption__movie-info {
+        @apply flex flex-col text-white;
+        transform: scaleX(0.4) translateX(-70%);
+
+        .movie-info__title {
+          @apply font-black text-white;
+        }
+
+        .movie-info__info {
+          @apply text-xs;
+        }
+
+        .movie-info__genre {
+          @apply text-xs;
+        }
+      }
+    }
+  }
+
+  &.expand {
+    transform: scale( calc(2.5 * var(--ratio)), var(--ratio));
+    visibility: visible;
+    opacity: 1;
+    transition: transform var(--duration) var(--cubic-bezier), opacity .2s ;
+  
+    .showcase-body {
+      opacity: 1;
+      transition: opacity var(--duration) var(--cubic-bezier) ;
+  
+      .showcase-body-caption-container {
+        opacity: 1;
+        transition: opacity var(--duration) ;
+      }
+    }
+  }
+}
+
+.showcase-action {
+  @apply text-white text-xl;
+  transform: scale(1, 1.2);
+
+  &:hover {
+    @apply text-red-400 cursor-pointer;
+  }
+}
+
+/* Slider */
+.slider-wrapper {
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  width: $slider-width;
+  transform: translateX(-($slider-container-width - $button-width));
+}
+
+.slide-container {
+  display: flex;
+  flex: 0 0 $slider-container-width;
+  will-change: transform;
+
+  &.middle {
+    z-index: 1;
+  }
+}
+
+.slide {
+  width:slide-width(8);
+  height: slide-height(slide-width(8));
+  transition: transform var(--duration) var(--cubic-bezier);
+  will-change: transform;
+  background-size: 95% 95%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index:10;
+
+  &.selected:before {
+    content: " ";
+    display: block;
+    height: 95%;
+    width: 95%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid white;
+    box-shadow:  inset 0px 0px 11px 4px rgba(0,0,0,0.43)
+  }
+  
+  &.selected:after {
+    content: " ";
+    display: flex;
+    border-top: solid 10px #fff;
+    border-left: solid 30px transparent;
+    border-right: solid 30px transparent;
+    align-items: flex-end;
+    position: absolute;
+    top: 96%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -100;
+  }
+}
+
+.movie-detail-container {
+  height: calc(100vw / 2.5);
+  
+  &.visible {
+    visibility: visible;
+  }
+
+  .movie-detail-background {
+    background-size: 70% 100%;
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+  .movie-detail-caption {
+    padding-left: $button-width;
+    color: white;
+  }
+  .movie-detail-menu-item {
+    @apply mx-6 py-2 text-gray-500;
+    transition: color .2s;
+    
+    &:hover {
+      @apply text-white border-b-4;
+      border-color: transparent;
+      transition: color .2s;
+    }
+
+    &.selected {
+      @apply border-b-4 border-red-600 text-white;
+      transition: border .2s;
+    }
+  }
+}
+
+.container-padding-x {
+  margin: 0 $container-margin-x;
+} 
+
+.movie-detail-container__grid {
+  margin: 0 (-1 * $container-margin-x)!important;
+  width: 100vw + (2 * $container-margin-x);
+}
+
+.bg-image-center {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Responsilbe Web */
+@include md-screen {
+  .slide {
+    width:slide-width(6);
+    height: slide-height(slide-width(6));
+  }
+
+  .slide-button {
+    height:slide-height(slide-width(6));
+  }
+}
+
+@include sm-screen {
+  .slide {
+    width:slide-width(4);
+    height: slide-height(slide-width(4));
+  }
+
+  .slide-button {
+    height:slide-height(slide-width(4));
+  }
+}
+
+@include xs-screen {
+  .slide {
+    width:slide-width(3);
+    height: slide-height(slide-width(3));
+  }
+
+  .slide-button {
+    height:slide-height(slide-width(3));
+  }
+}
+
+// ANIMATION GENERATED CSS
+// Simple Animation : Faded Element
+.hidden-element {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $duration;
+}
+
+.hidden-element.visible {
+  visibility: visible!important;
+  opacity: 1!important;
+  transition: opacity $duration;
+}
+
+// ANIMATION FOR VUE TRANSITION
+/* Slider Transition*/
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+}
+
+.list-leave-active{
+  display: none;
+  position: absolute;
+}
+
+.list-move {
+  transition: all 1s;
+}
+
+.fade-enter-active, 
+.fade-leave-active {
+  transition: opacity .5s
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0
+}
+
+.fade-transition-enter-active {
+  transition: opacity .5s
+}
+
+.fade-transition-enter,
+.fade-transition-leave-active,
+.fade-transition-leave-to {
+  opacity: 0
+}

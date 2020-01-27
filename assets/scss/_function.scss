@@ -1,0 +1,9 @@
+@import 'variable';
+
+@function slide-width($numOfSlides) {
+  @return $slider-container-width / $numOfSlides;
+}
+
+@function slide-height($width) {
+  @return $width * 1.5;
+}

@@ -19,9 +19,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/font-awesome": "^1.0.4",
     "lodash": "^4.17.15",
-    "nuxt": "^2.0.0",
-    "vue-video-player": "^5.0.2",
-    "vue-youtube-embed": "^2.2.2"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
@@ -39,7 +37,6 @@
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^2.0.0",
     "sass-loader": "^8.0.2",
-    "tailwindcss": "^1.1.4",
-    "video.js": "^7.6.6"
+    "tailwindcss": "^1.1.4"
   }
 }

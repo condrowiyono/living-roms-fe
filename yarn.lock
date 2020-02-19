@@ -10577,7 +10577,7 @@ verror@1.10.0:
     videojs-vtt.js "0.12.6"
     xhr "2.4.0"
 
-"video.js@^6 || ^7", "video.js@^6.8.0 || ^7.0.0", video.js@^7.6.6:
+"video.js@^6 || ^7", "video.js@^6.8.0 || ^7.0.0":
   version "7.6.6"
   resolved "https://registry.yarnpkg.com/video.js/-/video.js-7.6.6.tgz#e7c9163d53f9b0e05ccb5ac0f79d02fa49b4d3ac"
   integrity sha512-AXzHwymhvMpS7c7rF29u0j0/3tSs+v2gIk5UY8OkiDHSEHL7T0+t3hid4JHW7aGvTruUUgwyf4C74cX2RDL1Pw==

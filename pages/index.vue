@@ -1,29 +1,61 @@
 <template>
   <div>
-    <h1 class="mX-20 text-white text-center">
-      Living Rooms
-    </h1>
-    <div class="my-10" />
-    <div class="py-20">
-      <slider />
+    <div class="highlight" style="background-image: url('https://image.tmdb.org/t/p/original/8K001T1pcEDQSOYwEI1wKps1qcA.jpg')">
+      <div class="highlight-bg h-full">
+        sdaasdadsasd
+      </div>
     </div>
-    <div class="py-20">
-      <grid />
+    <div style="transform: translateY(-15vw)">
+      <Grid
+        :title="'Terbaru'"
+        :showList="shows"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Slider from '~/components/Slider'
+import { mapGetters, mapActions } from 'vuex'
+// import Slider from '~/components/Slider'
 import Grid from '~/components/Grid'
 
 export default {
+  name: 'Homepage',
+  layout: 'front',
+
   components: {
-    Slider,
+    // Slider,
     Grid
+  },
+
+  computed: {
+    ...mapGetters({
+      isFetchingSampleLink: 'sampleLink/isFetchingSampleLink',
+      fetchingSampleLinkError: 'sampleLink/fetchingSampleLinkError',
+      sampleLinks: 'sampleLink/sampleLinks',
+      isFetchingShow: 'show/isFetchingShow',
+      fetchingShowError: 'show/fetchingShowError',
+      shows: 'show/shows'
+    })
+  },
+
+  async mounted () {
+    await this.fetchSampleLinks()
+    await this.fetchShows()
+  },
+
+  methods: {
+    ...mapActions({
+      fetchSampleLinks: 'sampleLink/FETCH_SAMPLE_LINKS',
+      fetchShows: 'show/FETCH_SHOWS'
+    })
   }
+
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.top-menu {
+  @apply flex justify-between py-4 bg-black px-12;
+}
 </style>

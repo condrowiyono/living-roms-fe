@@ -24,12 +24,15 @@ export default {
   */
   css: [
     '~/assets/scss/tailwind.scss',
-    '~/assets/scss/custom.scss'
+    '~/assets/scss/custom.scss',
+    'bootstrap/dist/css/bootstrap.css',
+    'bootstrap-vue/dist/bootstrap-vue.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/bootstrap'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -43,7 +46,7 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/font-awesome',

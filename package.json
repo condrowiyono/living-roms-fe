@@ -15,11 +15,15 @@
     "test:e2e": "cross-env TEST=e2e ava --config e2e.config.js"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/font-awesome": "^1.0.4",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.5.0",
     "lodash": "^4.17.15",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue": "^2.6.11",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

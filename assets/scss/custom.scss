@@ -1,7 +1,7 @@
 // Import Global CSS Styling
 @import 'variable', 'function';
 
-html {
+html, body {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -49,7 +49,6 @@ html {
 
 /* Slider */
 .slider-content-container {
-  @apply cursor-pointer;
   --duration: 0.5s;
   --cubic-bezier: cubic-bezier( 0.5 , 0, 0.1 ,1);
   position: relative;
@@ -255,7 +254,7 @@ html {
 /* Movie Detail */
 .movie-detail-container {
   @apply bg-white;
-  height: calc(100vw / 2.5);
+  min-height: calc(100vw / 2.5);
   
   &.visible {
     visibility: visible;
@@ -277,7 +276,7 @@ html {
     @apply w-full flex justify-end;
 
     div {
-      @apply mr-4 mt-2 text-white text-4xl;
+      @apply mr-4 mt-2 text-white text-4xl cursor-pointer;
       text-shadow: #000000 0 0 20px;
     }
   }
@@ -293,7 +292,7 @@ html {
   }
 
   .movie-detail-menu {
-    @apply w-full font-bold text-white uppercase flex justify-center;
+    @apply w-full font-bold text-white uppercase flex justify-center cursor-pointer;
   }
 
   .movie-detail-menu-item {
@@ -432,3 +431,34 @@ html {
 .fade-transition-leave-to {
   opacity: 0
 }
+
+//Bootstrap overide
+.front-store {
+  .navbar {
+    @apply bg-transparent;
+    transition: background-color .3s linear;
+  }
+  .navbar--solid {
+    background-color: #141414!important;
+    transition: background-color .3s linear;
+  }
+  .highlight {
+    transform: translateY(-64px);
+    width: 100%;
+    height: 50vw;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .highlight-bg {
+      background-image: linear-gradient(to bottom, transparent, #141414 90% );
+    }
+  }
+  .form-control {
+    @apply text-white bg-transparent;
+
+    &:focus {
+      @apply text-white bg-transparent;
+    }
+  }
+}
+

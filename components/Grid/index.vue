@@ -3,7 +3,7 @@
     <div class="grid-title-container">
       <div class="title">
         <div>
-          <span>Movies</span>
+          <span>{{ title }}</span>
         </div>
       </div>
     </div>
@@ -37,10 +37,7 @@
                 <div>
                   <div class="movie-detail-close-btn">
                     <div @click="closeSelectedSlide">
-                      <i
-                        class="fa fa-close"
-                        aria-hidden="true"
-                      />
+                      <BIconX />
                     </div>
                   </div>
                   <div class="movie-detail-title">
@@ -69,7 +66,12 @@
                           <span> {{ selectedSlide.Genre }} </span>
                         </div>
                         <div class="mt-4">
-                          <nuxt-link to="/play">
+                          <nuxt-link
+                            :to="{
+                              name: 'player-id',
+                              params: { id: selectedSlide.ID }
+                            }"
+                          >
                             <span class="movie-detail-play-btn w-full">
                               Play
                             </span>
@@ -124,23 +126,39 @@
 </template>
 <script>
 import _ from 'lodash'
-import movieList from './movie'
 
 export default {
   name: 'Grid',
+
+  props: {
+    showList: {
+      type: Array,
+      default: () => ([])
+    },
+    title: {
+      type: String,
+      default: 'Show'
+    }
+  },
 
   data () {
     return {
       contentContainerSize: 8,
       contentContainer: [],
-      contentData: movieList,
       selectedDetailMenu: 'overview',
       detailMenus: ['overview', 'trailer', 'details'],
       selectedSlide: null,
       selectedSlideContainer: []
     }
   },
-
+  watch: {
+    showList: {
+      deep: true,
+      handler () {
+        this.setContentContainer()
+      }
+    }
+  },
   created () {
     this.setContentContainer()
   },
@@ -185,7 +203,7 @@ export default {
       } else {
         this.contentContainerSize = 8
       }
-      this.contentContainer = _.chunk(this.contentData, this.contentContainerSize)
+      this.contentContainer = _.chunk(this.showList, this.contentContainerSize)
       this.resetSelectedSlideContainer()
     },
 

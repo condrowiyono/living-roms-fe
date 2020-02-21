@@ -7,7 +7,14 @@
         </div>
       </div>
     </div>
+    <div v-if="loading" class="grid-content">
+      <div v-for="n in 5" :key="n" class="grid-slide" style="background-image:url('https://via.placeholder.com/150')">
+        <div class="skeleton">
+        </div>
+      </div>
+    </div>
     <div
+      v-else
       v-for="(container, idx) in contentContainer"
       :key="idx"
       class="grid-content"
@@ -40,19 +47,35 @@
                       <BIconX />
                     </div>
                   </div>
-                  <div class="movie-detail-title">
-                    {{ selectedSlide.Title }}
+                  <div>
+                    <div class="movie-detail-title sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
+                      <nuxt-link
+                          :to="{
+                            name: 'show-id',
+                            params: { id: selectedSlide.ID }
+                          }"
+                        >
+                        {{ selectedSlide.Title }}
+                      </nuxt-link>
+                    </div>
                   </div>
                   <transition name="fade-transition">
-                    <div
-                      v-if="selectedDetailMenu === 'overview'"
-                      class="tab-1"
-                    >
+                    <div v-if="selectedDetailMenu === 'overview'">
                       <div class="movie-detail-caption">
-                        <div class="">
+                        <div>
                           <span class="mr-2"> {{ selectedSlide.Year }} </span>
                           <span class="border px-1 mr-2">{{ selectedSlide.Rated }}</span>
                           <span> {{ selectedSlide.Runtime }} </span>
+                        </div>
+                        <div class="mt-4">
+                          <nuxt-link
+                            :to="{
+                              name: 'player-id',
+                              params: { id: selectedSlide.ID }
+                            }"
+                          >
+                            <b-button class="movie-detail-play-btn">Play</b-button>
+                          </nuxt-link>
                         </div>
                         <div class="mt-4">
                           {{ selectedSlide.Plot }}
@@ -64,18 +87,6 @@
                         <div>
                           <span class="font-bold"> Genre: </span>
                           <span> {{ selectedSlide.Genre }} </span>
-                        </div>
-                        <div class="mt-4">
-                          <nuxt-link
-                            :to="{
-                              name: 'player-id',
-                              params: { id: selectedSlide.ID }
-                            }"
-                          >
-                            <span class="movie-detail-play-btn w-full">
-                              Play
-                            </span>
-                          </nuxt-link>
                         </div>
                       </div>
                     </div>
@@ -138,6 +149,10 @@ export default {
     title: {
       type: String,
       default: 'Show'
+    },
+    loading: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -151,6 +166,7 @@ export default {
       selectedSlideContainer: []
     }
   },
+
   watch: {
     showList: {
       deep: true,
@@ -159,6 +175,7 @@ export default {
       }
     }
   },
+
   created () {
     this.setContentContainer()
   },

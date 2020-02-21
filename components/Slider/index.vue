@@ -22,7 +22,7 @@
         class="pagination"
       >
         <span
-          v-for="(x, index) in Math.ceil(contentData.length / contentContainerSize)"
+          v-for="(x, index) in Math.ceil(showList.length / contentContainerSize)"
           :key="index"
           :class="{'bg-white': (slideContainer[1] === index), 'bg-gray-700': (slideContainer[1] !== index) }"
         />
@@ -32,7 +32,7 @@
       @mouseover="isShowPagination = true"
       @mouseout="isShowPagination = false"
       @click="right"
-      v-if="Math.ceil(contentData.length / contentContainerSize) !== 1"
+      v-if="Math.ceil(showList.length / contentContainerSize) !== 1"
       class="slide-button slide-button--right"
     >
       <i
@@ -150,14 +150,13 @@
                 <div>
                   <div class="movie-detail-close-btn">
                     <div @click="handleCloseDetail">
-                      <i
-                        class="fa fa-close"
-                        aria-hidden="true"
-                      />
+                      <BIconX />
                     </div>
                   </div>
-                  <div class="movie-detail-title">
-                    {{ selectedSlide.Title }}
+                  <div>
+                    <div class="movie-detail-title sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
+                      {{ selectedSlide.Title }}
+                    </div>
                   </div>
                   <transition name="fade-transition">
                     <div v-if="selectedDetailMenu === 'overview'">
@@ -166,6 +165,16 @@
                           <span class="mr-2"> {{ selectedSlide.Year }} </span>
                           <span class="border px-1 mr-2">{{ selectedSlide.Rated }}</span>
                           <span> {{ selectedSlide.Runtime }} </span>
+                        </div>
+                        <div class="mt-4">
+                          <nuxt-link
+                            :to="{
+                              name: 'player-id',
+                              params: { id: selectedSlide.ID }
+                            }"
+                          >
+                            <b-button class="movie-detail-play-btn">Play</b-button>
+                          </nuxt-link>
                         </div>
                         <div class="mt-4">
                           {{ selectedSlide.Plot }}
@@ -177,13 +186,6 @@
                         <div>
                           <span class="font-bold"> Genre: </span>
                           <span> {{ selectedSlide.Genre }} </span>
-                        </div>
-                        <div class="mt-4">
-                          <nuxt-link to="/play">
-                            <span class="movie-detail-play-btn">
-                              Play
-                            </span>
-                          </nuxt-link>
                         </div>
                       </div>
                     </div>
@@ -229,7 +231,6 @@
 
 <script>
 import _ from 'lodash'
-import movieList from './movie'
 
 export default {
   name: 'Slider',
@@ -252,6 +253,17 @@ export default {
     }
   },
 
+  props: {
+    showList: {
+      type: Array,
+      default: () => ([])
+    },
+    title: {
+      type: String,
+      default: 'Show'
+    }
+  },
+
   data () {
     return {
       bodyMarginLeft: document.body.getBoundingClientRect().left,
@@ -266,8 +278,6 @@ export default {
       slideContainer: [-1, 0, 1],
       contentContainer: [],
       contentContainerSize: 6,
-      // contentData: [1, 2, 3, 4, 5],
-      contentData: movieList,
       infinityLoop: false,
       showMovieDetail: false,
       selectedSlide: null,
@@ -276,7 +286,14 @@ export default {
       showSeeAll: false
     }
   },
-
+  watch: {
+    showList: {
+      deep: true,
+      handler () {
+        this.setContentContainer()
+      }
+    }
+  },
   mounted () {
     this.$el.style.setProperty('--ratio', `${this.ratio}`)
     window.addEventListener('resize', _.debounce(this.resetContentContainer, 150))
@@ -445,7 +462,7 @@ export default {
       } else {
         this.contentContainerSize = 8
       }
-      this.contentContainer = _.chunk(this.contentData, this.contentContainerSize)
+      this.contentContainer = _.chunk(this.showList, this.contentContainerSize)
     },
 
     updateContentContainer () {

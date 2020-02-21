@@ -6,17 +6,26 @@
       </div>
     </div>
     <div style="transform: translateY(-15vw)">
-      <Grid
-        :title="'Terbaru'"
-        :showList="shows"
-      />
+      <div>
+        <Grid
+          :title="'Terbaru'"
+          :show-list="shows"
+          :loading="isFetchingShow"
+        />
+      </div>
+      <div>
+        <Slider
+          :title="'Terbaru'"
+          :show-list="shows"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-// import Slider from '~/components/Slider'
+import Slider from '~/components/Slider'
 import Grid from '~/components/Grid'
 
 export default {
@@ -24,7 +33,7 @@ export default {
   layout: 'front',
 
   components: {
-    // Slider,
+    Slider,
     Grid
   },
 

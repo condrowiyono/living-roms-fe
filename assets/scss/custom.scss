@@ -137,6 +137,7 @@ html, body {
 }
 
 .slide {
+  cursor: pointer;
   width:slide-width(8);
   height: slide-height(slide-width(8));
   transition: transform var(--duration) var(--cubic-bezier);
@@ -176,6 +177,7 @@ html, body {
 
 /* Showcase */
 .showcase {
+  cursor: pointer;
   position: absolute;
   visibility: hidden;
   opacity: 0;
@@ -229,7 +231,7 @@ html, body {
     transform: scale(1, 1.2);
   
     &:hover {
-      @apply text-red-400 cursor-pointer;
+      @apply text-green-400 cursor-pointer;
     }
   }
 
@@ -254,22 +256,22 @@ html, body {
 /* Movie Detail */
 .movie-detail-container {
   @apply bg-white;
-  min-height: calc(100vw / 2.5);
+  height: 35vw;
   
   &.visible {
     visibility: visible;
   }
 
   .movie-detail-background {
-    @apply w-full h-full ;
+    @apply w-full h-full;
     background-size: 70% 100%;
     background-position: right;
     background-repeat: no-repeat;
   }
 
   .movie-detail-bg-gradient {
-    @apply h-full flex flex-col justify-between;
-    background-image: linear-gradient(90deg, black 30%, transparent);
+    @apply h-full overflow-y-hidden;
+    background-image: linear-gradient(90deg, black 35%, transparent);
   }
 
   .movie-detail-close-btn {
@@ -282,17 +284,23 @@ html, body {
   }
 
   .movie-detail-title {
-    @apply  w-6/12 text-5xl font-bold text-white;
+    @apply font-bold text-white;
     @extend .left-width;
+
+    a:hover {
+      color: inherit;
+      text-decoration: inherit;
+    }
   }
 
   .movie-detail-caption {
-    @apply w-5/12 cursor-default font-semibold text-white;
+    @apply cursor-default font-semibold text-white w-1/2;
     @extend .left-width;
   }
 
   .movie-detail-menu {
-    @apply w-full font-bold text-white uppercase flex justify-center cursor-pointer;
+    @apply absolute w-full font-bold text-white uppercase flex justify-center cursor-pointer;
+    bottom: 0;
   }
 
   .movie-detail-menu-item {
@@ -306,15 +314,17 @@ html, body {
     }
 
     &.selected {
-      @apply border-b-4 border-red-600 text-white;
+      @apply border-b-4 border-green-600 text-white;
       transition: border .2s;
     }
   }
   .movie-detail-play-btn {
-    @apply border border-red-600 px-4 py-2 cursor-pointer uppercase bg-red-600 text-white;
+    @apply border border-green-700 rounded-none px-4 py-2 cursor-pointer uppercase bg-green-700 text-white;
+    transition: transform linear .2s;
 
     &:hover {
-      @apply bg-red-500 border-red-500
+      transform: scale(1.1);
+      transition: transform linear .2s;
     }
   }
 }
@@ -345,7 +355,6 @@ html, body {
   @extend .movie-detail-container;
   margin: 0 (-1 * $container-margin-x)!important;
   width: 100vw + (2 * $container-margin-x);
-  background-color: white; padding: 0!important;
 }
 
 /* Responsilbe Web */
@@ -358,6 +367,10 @@ html, body {
   .slide-button {
     height:slide-height(slide-width(6));
   }
+
+  .navbar {
+    background-color: #141414!important;
+  }
 }
 
 @include sm-screen {
@@ -368,6 +381,9 @@ html, body {
 
   .slide-button {
     height:slide-height(slide-width(4));
+  }
+  .navbar {
+    background-color: #141414!important;
   }
 }
 
@@ -434,16 +450,23 @@ html, body {
 
 //Bootstrap overide
 .front-store {
+  a {
+    @apply no-underline;
+  }
   .navbar {
-    @apply bg-transparent;
+    @apply bg-transparent font-bold;
     transition: background-color .3s linear;
   }
   .navbar--solid {
     background-color: #141414!important;
     transition: background-color .3s linear;
   }
-  .highlight {
+  .highlight-top {
     transform: translateY(-64px);
+  }
+
+  .highlight {
+    @extend .highlight-top;
     width: 100%;
     height: 50vw;
     background-position: center;
@@ -462,3 +485,21 @@ html, body {
   }
 }
 
+@keyframes shine {
+  0% {
+    background-position: -32px;
+  }
+  40%, 100% {
+    background-position: 208px;
+  }
+}
+
+.skeleton {
+  background-image: linear-gradient(90deg, rgba(119, 117, 117, 0.53) 0px, rgba(84, 84, 84, 0.8) 40px, rgba(88, 88, 88, 0.41) 80px);
+  background-size: 95% 95%;
+  margin: auto;
+  height: 95%;
+  width: 95%;
+  animation: shine 2s infinite ease-out;
+  transform: translateY(2.5%);
+}

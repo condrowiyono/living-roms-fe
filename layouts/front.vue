@@ -5,7 +5,7 @@
       toggleable="lg"
       type="dark"
       sticky
-      :class="{ 'navbar--solid': !showNavbar }"
+      :class="{ 'navbar--solid': !transparentNavbar }"
     >
       <b-navbar-brand>
         NavBar
@@ -49,6 +49,15 @@
       </b-collapse>
     </b-navbar>
     <nuxt />
+    <div class="px-36 pb-12">
+      <b-container>
+        <b-row>
+          <b-col>Tentang Kami</b-col>
+          <b-col>Didukung oleh GdrivePlayer</b-col>
+          <b-col>Semangat</b-col>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 </template>
 
@@ -56,8 +65,7 @@
 export default {
   data () {
     return {
-      showNavbar: true,
-      lastScrollPosition: 0
+      transparentNavbar: true
     }
   },
   mounted () {
@@ -72,13 +80,7 @@ export default {
       if (currentScrollPosition < 0) {
         return
       }
-      // Stop executing this function if the difference between
-      // current scroll position and last scroll position is less than some offset
-      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 64) {
-        return
-      }
-      this.showNavbar = currentScrollPosition < this.lastScrollPosition
-      this.lastScrollPosition = currentScrollPosition
+      this.transparentNavbar = currentScrollPosition < 64
     }
   }
 }

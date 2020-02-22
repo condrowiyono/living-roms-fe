@@ -9,8 +9,7 @@
     </div>
     <div v-if="loading" class="grid-content">
       <div v-for="n in 5" :key="n" class="grid-slide" style="background-image:url('https://via.placeholder.com/150')">
-        <div class="skeleton">
-        </div>
+        <div class="skeleton" />
       </div>
     </div>
     <div
@@ -50,11 +49,11 @@
                   <div>
                     <div class="movie-detail-title sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
                       <nuxt-link
-                          :to="{
-                            name: 'show-id',
-                            params: { id: selectedSlide.ID }
-                          }"
-                        >
+                        :to="{
+                          name: 'show-id',
+                          params: { id: selectedSlide.ID }
+                        }"
+                      >
                         {{ selectedSlide.Title }}
                       </nuxt-link>
                     </div>
@@ -74,7 +73,9 @@
                               params: { id: selectedSlide.ID }
                             }"
                           >
-                            <b-button class="movie-detail-play-btn">Play</b-button>
+                            <b-button class="movie-detail-play-btn">
+                              Play
+                            </b-button>
                           </nuxt-link>
                         </div>
                         <div class="mt-4">

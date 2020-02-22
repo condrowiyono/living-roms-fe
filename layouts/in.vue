@@ -1,5 +1,68 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="back-office">
+    <b-navbar class="navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <b-navbar-brand class="col-sm-3 col-md-2 mr-0">
+        NavBar
+      </b-navbar-brand>
+      <b-navbar-nav class="w-full px-4">
+        <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
+      </b-navbar-nav>
+      <b-navbar-nav class="pr-8">
+        <b-nav-item-dropdown right>
+          <template v-slot:button-content>
+            <img
+              class="w-8 h-8 inline"
+              src="https://picsum.photos/250/250/?image=59"
+              alt="Image 3"
+            >
+          </template>
+          <b-dropdown-item @click="$router.push('/')">
+            Ke Halaman Utama
+          </b-dropdown-item>
+          <b-dropdown-item @click="handleLogout">
+            Sign Out
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-navbar>
+    <b-container fluid>
+      <b-row>
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <b-nav class="flex-col">
+              <b-nav-item :to="{ name: 'in-show' }">
+                <b-icon icon="house" />
+                Show
+              </b-nav-item>
+              <b-nav-item :to="{ name: 'in-playlist' }">
+                <b-icon icon="house" />
+                Playlist
+              </b-nav-item>
+            </b-nav>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Pengaturan Akun</span>
+            </h6>
+          </div>
+        </nav>
+        <nuxt />
+      </b-row>
+    </b-container>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions({
+      logout: 'auth/LOGOUT'
+    }),
+
+    handleLogout () {
+      this.logout()
+      this.$router.push('/')
+    }
+  }
+}
+</script>

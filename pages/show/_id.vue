@@ -26,7 +26,9 @@
                           params: { id: show.ID }
                         }"
                       >
-                        <b-button class="movie-detail-play-btn">Play</b-button>
+                        <b-button class="movie-detail-play-btn">
+                          Play
+                        </b-button>
                       </nuxt-link>
                     </div>
                     <div class="mt-4">
@@ -98,7 +100,8 @@ export default {
     ...mapGetters({
       isFetchingShow: 'show/isFetchingShow',
       fetchingShowError: 'show/fetchingShowError',
-      show: 'show/show'
+      show: 'show/show',
+      meta: 'show/meta'
     })
   },
 

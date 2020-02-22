@@ -8,7 +8,8 @@ export default {
 
   [types.FETCH_SAMPLE_LINKS_SUCCESS] (state, data) {
     state.isFetchingSampleLink = false
-    state.sampleLinks = [...data]
+    state.sampleLinks = data.data
+    state.meta = data.meta
   },
 
   [types.FETCH_SAMPLE_LINKS_ERROR] (state, error) {

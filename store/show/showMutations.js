@@ -8,7 +8,8 @@ export default {
 
   [types.FETCH_SHOWS_SUCCESS] (state, data) {
     state.isFetchingShow = false
-    state.shows = [...data]
+    state.shows = data.data
+    state.meta = data.meta
   },
 
   [types.FETCH_SHOWS_ERROR] (state, error) {
@@ -23,7 +24,7 @@ export default {
 
   [types.FETCH_SHOW_SUCCESS] (state, data) {
     state.isFetchingShow = false
-    state.show = data
+    state.show = data.data
   },
 
   [types.FETCH_SHOW_ERROR] (state, error) {

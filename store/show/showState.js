@@ -3,5 +3,6 @@ export default () => ({
   fetchingShowError: null,
 
   shows: [],
+  meta: {},
   show: {}
 })

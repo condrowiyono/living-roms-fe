@@ -52,6 +52,9 @@ export default {
     '@nuxtjs/font-awesome',
     'nuxt-purgecss'
   ],
+  router: {
+    linkActiveClass: 'active'
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

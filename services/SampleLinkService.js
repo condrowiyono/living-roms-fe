@@ -6,6 +6,6 @@ export default class sampleLinkService {
   async getSampleLinks (query) {
     const { data } = await this._http.get('/sample-link', query)
 
-    return data.data
+    return data
   }
 }

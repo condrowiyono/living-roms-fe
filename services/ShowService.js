@@ -6,12 +6,12 @@ export default class sampleLinkService {
   async getShows (query) {
     const { data } = await this._http.get('/show', query)
 
-    return data.data
+    return data
   }
 
   async getShow (id) {
     const { data } = await this._http.get(`/show/${id}`)
 
-    return data.data
+    return data
   }
 }

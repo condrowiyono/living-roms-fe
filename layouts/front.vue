@@ -1,17 +1,17 @@
 <template>
   <div class="front-store">
     <b-navbar
+      :class="{ 'navbar--solid': !transparentNavbar }"
       class="px-16 bg-black"
       toggleable="lg"
       type="dark"
       sticky
-      :class="{ 'navbar--solid': !transparentNavbar }"
     >
       <b-navbar-brand>
         NavBar
       </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"/>
+      <b-navbar-toggle target="nav-collapse" />
 
       <b-collapse
         id="nav-collapse"
@@ -40,10 +40,11 @@
                 class="w-8 h-8 inline"
                 src="https://picsum.photos/250/250/?image=59"
                 alt="Image 3"
-              />
+              >
             </template>
-            <b-dropdown-item>Profile</b-dropdown-item>
-            <b-dropdown-item>Sign Out</b-dropdown-item>
+            <b-dropdown-item @click="$router.push('/in')">
+              Login
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>

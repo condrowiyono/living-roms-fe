@@ -7,7 +7,7 @@
           class="movie-detail-background"
         >
           <div class="movie-detail-bg-gradient">
-            <div class="pt-32">
+            <div class="pt-24">
               <div class="movie-detail-title sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl">
                 {{ show.Title }}
               </div>
@@ -129,5 +129,9 @@ export default {
 
 .loading {
   @apply h-full w-full text-center flex items-center text-center justify-center;
+}
+
+/deep/ .movie-detail-container {
+  height: 40vw;
 }
 </style>

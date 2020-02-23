@@ -27,5 +27,19 @@ export default ({ showService }) => ({
     } catch (error) {
       commit(types.FETCH_SHOW_ERROR, error)
     }
+  },
+
+  async [types.CREATE_SHOW] ({ commit }, payload) {
+    commit(types.CREATE_SHOW)
+
+    try {
+      const data = await showService.create(payload)
+
+      commit(types.CREATE_SHOW_SUCCESS, data)
+
+      return data
+    } catch (error) {
+      commit(types.CREATE_SHOW_ERROR, error)
+    }
   }
 })

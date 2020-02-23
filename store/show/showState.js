@@ -4,5 +4,8 @@ export default () => ({
 
   shows: [],
   meta: {},
-  show: {}
+  show: {},
+
+  isCreatingShow: false,
+  creatingShowError: null
 })

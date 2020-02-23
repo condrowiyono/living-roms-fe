@@ -14,4 +14,10 @@ export default class sampleLinkService {
 
     return data
   }
+
+  async create (payload) {
+    const { data } = await this._http.post('/show', payload)
+
+    return data
+  }
 }

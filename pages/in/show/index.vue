@@ -39,7 +39,7 @@ export default {
     return {
       filter: {
         page: 1,
-        limit: 1
+        limit: 20
       },
       fields: ['Poster', 'Title', 'Runtime', 'Rated', 'Actors'],
       selected: []

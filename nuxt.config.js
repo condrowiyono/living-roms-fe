@@ -26,7 +26,8 @@ export default {
     '~/assets/scss/tailwind.scss',
     '~/assets/scss/custom.scss',
     'bootstrap/dist/css/bootstrap.css',
-    'bootstrap-vue/dist/bootstrap-vue.css'
+    'bootstrap-vue/dist/bootstrap-vue.css',
+    'vue-toast-notification/dist/index.css'
   ],
   /*
   ** Plugins to load before mounting the App

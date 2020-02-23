@@ -30,5 +30,19 @@ export default {
   [types.FETCH_SHOW_ERROR] (state, error) {
     state.isFetchingShow = false
     state.fetchingShowError = error
+  },
+
+  [types.CREATE_SHOW] (state) {
+    state.isCreatingShow = true
+    state.creatingShowError = null
+  },
+
+  [types.CREATE_SHOW_SUCCESS] (state) {
+    state.isCreatingShow = false
+  },
+
+  [types.CREATE_SHOW_ERROR] (state, error) {
+    state.isCreatingShow = false
+    state.creatingShowError = error
   }
 }

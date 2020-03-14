@@ -27,5 +27,19 @@ export default ({ tmdbService }) => ({
     } catch (error) {
       commit(types.TMDB_MOVIE_DETAIL_ERROR, error)
     }
+  },
+
+  async [types.TMDB_MOVIE_IMAGE] ({ commit }, query) {
+    commit(types.TMDB_MOVIE_IMAGE)
+
+    try {
+      const data = await tmdbService.getMovieImage(query)
+
+      commit(types.TMDB_MOVIE_IMAGE_SUCCESS, data)
+
+      return data
+    } catch (error) {
+      commit(types.TMDB_MOVIE_IMAGE_ERROR, error)
+    }
   }
 })

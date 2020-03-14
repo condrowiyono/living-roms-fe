@@ -1,8 +1,8 @@
 <template>
   <div v-if="!loggedIn">
-    <div class="w-full h-full flex flex-col items-center bg-gray-100 absolute">
-      <div class="m-auto text-center w-64">
-        <h1 class="text-2xl mb-8">
+    <div class="d-flex flex-column">
+      <div class="text-center">
+        <h1 class="mb-4">
           Please sign in
         </h1>
         <form @submit.prevent="handleSubmit">
@@ -13,7 +13,7 @@
             />
           </b-form-group>
           <b-form-group>
-            <b-input
+            <b-form-input
               v-model="password"
               type="password"
               placeholder="Password"
@@ -36,9 +36,15 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { BFormGroup, BFormInput, BButton } from 'bootstrap-vue'
 
 export default {
   name: 'Login',
+  components: {
+    BFormGroup,
+    BFormInput,
+    BButton
+  },
 
   data () {
     return {
@@ -85,7 +91,7 @@ export default {
       }
       await this.login(payload)
       if (!this.loginError) {
-        this.$router.push('/in')
+        this.$router.go({ path: '/in', force: true })
       }
     }
   }

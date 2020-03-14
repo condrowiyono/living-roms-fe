@@ -2,5 +2,9 @@ export default () => ({
   isSearching: false,
   searchingError: null,
 
-  duckduckgo: []
+  isUploadingImage: false,
+  uploadingImageError: null,
+
+  duckduckgo: [],
+  google: []
 })

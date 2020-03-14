@@ -1,4 +1,5 @@
-import path from 'path'
+require('dotenv').config()
+
 export default {
   mode: 'spa',
   /*
@@ -23,17 +24,13 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/scss/tailwind.scss',
     '~/assets/scss/custom.scss',
-    'bootstrap/dist/css/bootstrap.css',
-    'bootstrap-vue/dist/bootstrap-vue.css',
-    'vue-toast-notification/dist/index.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/bootstrap'
+    '@/plugins/toast'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,7 +47,6 @@ export default {
     // '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/font-awesome',
     'nuxt-purgecss'
   ],
   router: {
@@ -70,11 +66,6 @@ export default {
     ** You can extend webpack config here
     */
     extractCSS: true,
-    postcss: {
-      plugins: {
-        tailwindcss: path.resolve(__dirname, './tailwind.config.js')
-      }
-    },
     extend (config, ctx) {
     }
   },

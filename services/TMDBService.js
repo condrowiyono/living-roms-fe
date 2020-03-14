@@ -4,13 +4,19 @@ export default class sampleLinkService {
   }
 
   async searchMovie (query) {
-    const { data } = await this._http.get('/tmdb/search-movie', query)
+    const { data } = await this._http.get('/partner/tmdb/movie-search', query)
 
     return data
   }
 
   async getMovieDetail (tmdb) {
-    const { data } = await this._http.get('/tmdb/movie-detail', { tmdb })
+    const { data } = await this._http.get('/partner/tmdb/movie-detail', { tmdb })
+
+    return data
+  }
+
+  async getMovieImage (query) {
+    const { data } = await this._http.get('/partner/tmdb/movie-image', query)
 
     return data
   }

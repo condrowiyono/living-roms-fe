@@ -10,11 +10,7 @@
       <b-navbar-nav class="pr-8">
         <b-nav-item-dropdown right>
           <template v-slot:button-content>
-            <img
-              class="w-8 h-8 inline"
-              src="https://picsum.photos/250/250/?image=59"
-              alt="Image 3"
-            >
+            Nama
           </template>
           <b-dropdown-item @click="$router.push('/')">
             Ke Halaman Utama
@@ -29,14 +25,12 @@
       <b-row>
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
-            <b-nav class="flex-col">
-              <b-nav-item :to="{ name: 'in-show' }">
-                <b-icon icon="house" />
-                Show
+            <b-nav class="flex-column">
+              <b-nav-item :to="{ name: 'in-movie' }">
+                <b-icon-house/> Movie
               </b-nav-item>
-              <b-nav-item :to="{ name: 'in-playlist' }">
-                <b-icon icon="house" />
-                Playlist
+              <b-nav-item :to="{ name: 'in-person' }">
+                <b-icon-house/> People
               </b-nav-item>
             </b-nav>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -52,8 +46,33 @@
 
 <script>
 import { mapActions } from 'vuex'
+import {
+  BNavbar,
+  BNavbarBrand,
+  BNavbarNav,
+  BNavItem,
+  BNavItemDropdown,
+  BDropdownItem,
+  BContainer,
+  BRow,
+  BNav,
+  BIconHouse
+} from 'bootstrap-vue'
 
 export default {
+  components: {
+    BNavbar,
+    BNavbarBrand,
+    BNavbarNav,
+    BNavItem,
+    BNavItemDropdown,
+    BDropdownItem,
+    BContainer,
+    BRow,
+    BNav,
+    BIconHouse
+  },
+
   methods: {
     ...mapActions({
       logout: 'auth/LOGOUT'

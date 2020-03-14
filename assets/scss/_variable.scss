@@ -1,11 +1,2 @@
-// Variable
-$duration: .5s;
-
-//Margin for each left and right
-$container-margin-x: 5vw;
-$container-body: 90vw;
-
-// For Slide
-$button-width: $container-margin-x;
-$slider-container-width: $container-body;
-$slider-width: $slider-container-width * 3;
+$default-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font: 'Martel Sans', sans-serif;

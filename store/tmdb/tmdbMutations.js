@@ -29,5 +29,20 @@ export default {
   [types.TMDB_MOVIE_DETAIL_ERROR] (state, error) {
     state.isFetchingDetail = false
     state.fetchingDetailError = error
+  },
+
+  [types.TMDB_MOVIE_IMAGE] (state) {
+    state.isFetchingDetail = true
+    state.fetchingDetailError = null
+  },
+
+  [types.TMDB_MOVIE_IMAGE_SUCCESS] (state, data) {
+    state.isFetchingDetail = false
+    state.movieImage = data.data
+  },
+
+  [types.TMDB_MOVIE_IMAGE_ERROR] (state, error) {
+    state.isFetchingDetail = false
+    state.fetchingDetailError = error
   }
 }

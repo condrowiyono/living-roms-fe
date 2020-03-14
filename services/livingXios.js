@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:9000'
+const baseURL = process.env.API_URL
 const token = window.localStorage.getItem('token')
 
 const OPTIONS = {

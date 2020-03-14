@@ -6,5 +6,6 @@ export default () => ({
   fetchingDetailError: null,
 
   results: [],
-  movieDetail: {}
+  movieDetail: {},
+  movieImage: {}
 })

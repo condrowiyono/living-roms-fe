@@ -5,5 +5,6 @@ export default {
   fetchingMovieError: state => state.fetchingMovieError,
 
   results: state => state.results,
-  movieDetail: state => state.movieDetail
+  movieDetail: state => state.movieDetail,
+  movieImage: state => state.movieImage
 }

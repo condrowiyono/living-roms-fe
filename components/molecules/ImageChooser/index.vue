@@ -30,13 +30,13 @@
         class="mb-2"
       />
       <card-image-container
+        id="image-result-google"
         :loading="isImageSearching"
         :data="filteredResult"
         :toolbar-options="topImageOptions"
         :default-selected-toolbar="topImageSelected"
         @toolbar-change="handleTopResultGoogle"
         @select-card="handleSelectImage"
-        id="image-result-google"
       />
     </b-form-group>
     <b-form-group
@@ -50,13 +50,13 @@
         class="mb-2"
       />
       <card-image-container
+        id="image-result-duckduckgo"
         :loading="isImageSearching"
         :data="filteredResult"
         :toolbar-options="topImageOptions"
         :default-selected-toolbar="topImageSelected"
         @toolbar-change="handleTopResultDuckDuckGo"
         @select-card="handleSelectImage"
-        id="image-result-duckduckgo"
       />
     </b-form-group>
     <b-form-group
@@ -67,10 +67,10 @@
         placeholder="Pilih atau seret gambar disini"
         drop-placeholder="Jatuhkan disini"
         class="mb-2"
-      ></b-form-file>
+      />
       <b-button
-        class="w-100"
         @click="handleUpload"
+        class="w-100"
       >
         Upload
       </b-button>
@@ -83,13 +83,13 @@
         @select-movie="handleImageSearch"
       />
       <card-image-container
+        id="image-result-tmdb"
         :loading="isFetchingMovie"
         :data="filteredResult"
         :toolbar-options="topImageOptions"
         :default-selected-toolbar="topImageSelected"
         @toolbar-change="handleTopResultTMDB"
         @select-card="handleSelectImage"
-        id="image-result-tmdb"
       />
     </b-form-group>
     <b-form-group
@@ -100,13 +100,13 @@
         @select-movie="handleImageSearch"
       />
       <card-image-container
+        id="image-result-tmdb"
         :loading="isFetchingMovie"
         :data="filteredResult"
         :toolbar-options="topImageOptions"
         :default-selected-toolbar="topImageSelected"
         @toolbar-change="handleTopResultTMDB"
         @select-card="handleSelectImage"
-        id="image-result-tmdb"
       />
     </b-form-group>
     <b-form-group
@@ -115,15 +115,15 @@
     >
       <div class="img-preview">
         <b-img-lazy
-          fluid
           :src="form.url"
+          fluid
         />
       </div>
-        <b-form-input
-          v-model="form.url"
-          disabled
-          class="mt-2"
-        />
+      <b-form-input
+        v-model="form.url"
+        disabled
+        class="mt-2"
+      />
     </b-form-group>
   </b-modal>
 </template>

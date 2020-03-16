@@ -34,11 +34,15 @@
         <b-col cols="8">
           <b-card class="mb-2">
             <template v-slot:header>
-              <h6 class="mb-0 d-inline">Posters</h6>
+              <h6 class="mb-0 d-inline">
+                Posters
+              </h6>
               <b-button
-                size="sm"
                 @click="handleOpenPoster"
-              > + </b-button>
+                size="sm"
+              >
+                +
+              </b-button>
             </template>
             <b-img-lazy
               v-for="(image, idx) in form.posters"
@@ -50,11 +54,15 @@
           </b-card>
           <b-card class="mb-2">
             <template v-slot:header>
-              <h6 class="mb-0 d-inline">Banners</h6>
+              <h6 class="mb-0 d-inline">
+                Banners
+              </h6>
               <b-button
-                size="sm"
                 @click="handleOpenBanner"
-              > + </b-button>
+                size="sm"
+              >
+                +
+              </b-button>
             </template>
             <b-img-lazy
               v-for="(image, idx) in form.banners"
@@ -123,27 +131,27 @@
                 </div>
                 <div>
                   <b-button
+                    @click="handleOpenVideos(idx)"
                     size="sm"
                     class="mt-2"
                     variant="primary"
-                    @click="handleOpenVideos(idx)"
                   >
-                    <b-icon-pencil/>
+                    <b-icon-pencil />
                   </b-button>
                   <b-button
+                    @click="handleRemoveVideos(idx)"
                     size="sm"
                     class="mt-2"
                     variant="danger"
-                    @click="handleRemoveVideos(idx)"
                   >
-                    <b-icon-trash/>
+                    <b-icon-trash />
                   </b-button>
                 </div>
               </b-list-group-item>
             </b-list-group>
             <b-button
-              class="mt-2"
               @click="handleOpenVideos(null)"
+              class="mt-2"
             >
               Tambah
             </b-button>
@@ -160,20 +168,20 @@
                 </div>
                 <div>
                   <b-button
+                    @click="handleOpenPlayer"
                     size="sm"
                     class="mt-2"
                     variant="primary"
-                    @click="handleOpenPlayer"
                   >
-                    <b-icon-pencil/>
+                    <b-icon-pencil />
                   </b-button>
                   <b-button
+                    @click="handleRemovePlayer"
                     size="sm"
                     class="mt-2"
                     variant="danger"
-                    @click="handleRemovePlayer"
                   >
-                    <b-icon-trash/>
+                    <b-icon-trash />
                   </b-button>
                 </div>
               </b-list-group-item>

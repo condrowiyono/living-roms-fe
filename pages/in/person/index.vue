@@ -11,10 +11,10 @@
         <template v-slot:cell(picture)="data">
           <b-img
             v-if="data.item.pictures.length"
+            :src="data.item.pictures[0].path"
             width="80"
             fluid
             thumbnail
-            :src="data.item.pictures[0].path"
           />
         </template>
         <template v-slot:cell(more)>
@@ -30,8 +30,7 @@
         last-number
       />
     </div>
-    <div>
-    </div>
+    <div />
   </div>
 </template>
 <script>

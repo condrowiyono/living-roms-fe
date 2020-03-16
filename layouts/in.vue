@@ -27,10 +27,10 @@
           <div class="sidebar-sticky">
             <b-nav class="flex-column">
               <b-nav-item :to="{ name: 'in-movie' }">
-                <b-icon-house/> Movie
+                <b-icon-house /> Movie
               </b-nav-item>
               <b-nav-item :to="{ name: 'in-person' }">
-                <b-icon-house/> People
+                <b-icon-house /> People
               </b-nav-item>
             </b-nav>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">

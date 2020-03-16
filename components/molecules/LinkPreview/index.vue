@@ -30,8 +30,8 @@
     >
       <b-form-input
         v-model="form.player_url"
-        class="mb-2"
         v-on:keyup.enter="handleURL"
+        class="mb-2"
         debounce="500"
       />
     </b-form-group>
@@ -42,8 +42,8 @@
     >
       <b-form-input
         v-model="tmdbID"
-        class="mb-2"
         v-on:keyup.enter="handleGDrivePlayer"
+        class="mb-2"
         debounce="500"
       />
     </b-form-group>
@@ -53,9 +53,9 @@
       disabled
     />
     <b-embed
+      :src="iframeURL"
       type="iframe"
       aspect="16by9"
-      :src="iframeURL"
       allowfullscreen
     />
   </b-modal>

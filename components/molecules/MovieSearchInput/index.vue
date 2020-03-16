@@ -5,20 +5,20 @@
     :serializer="item => item.title"
     @hit="handleSelectMovie($event.id)"
   >
-  <template
-    slot="suggestion"
-    slot-scope="{ data, htmlText }"
-  >
-    <div class="d-flex align-items-center">
-      <b-img
-        fluid
-        width="50"
-        blank-src="https://via.placeholder.com/50"
-        :src="`https://image.tmdb.org/t/p/w220_and_h330_face${data.poster_path}`"
-      />
-      <span class="ml-4" v-html="htmlText"></span>
-    </div>
-  </template>
+    <template
+      slot="suggestion"
+      slot-scope="{ data, htmlText }"
+    >
+      <div class="d-flex align-items-center">
+        <b-img
+          :src="`https://image.tmdb.org/t/p/w220_and_h330_face${data.poster_path}`"
+          fluid
+          width="50"
+          blank-src="https://via.placeholder.com/50"
+        />
+        <span v-html="htmlText" class="ml-4" />
+      </div>
+    </template>
   </vue-bootstrap-typeahead>
 </template>
 
@@ -33,17 +33,17 @@ export default {
     BImg
   },
 
-  data () {
-    return {
-      data: this.value
-    }
-  },
-
   props: {
     value: {
       type: String,
       default: '',
       required: true
+    }
+  },
+
+  data () {
+    return {
+      data: this.value
     }
   },
 

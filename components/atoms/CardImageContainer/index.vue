@@ -6,9 +6,9 @@
       :id="id"
       v-model="selectedToolbar"
       :options="toolbarOptions"
+      @change="handleToolbarChange"
       buttons
       size="sm"
-      @change="handleToolbarChange"
       class="w-100 flex justify-center py-2"
     />
     <div class="image-container">
@@ -20,10 +20,10 @@
           v-for="image in data"
           :key="image.thumbnail"
           :img-src="image.thumbnail"
+          @click="handleSelectCard(image.image)"
           img-alt="Image"
           overlay
           class="cursor-pointer"
-          @click="handleSelectCard(image.image)"
         />
       </b-card-group>
     </div>
@@ -40,12 +40,6 @@ export default {
     BCardGroup,
     BCard,
     Loading
-  },
-
-  data () {
-    return {
-      selectedToolbar: this.defaultSelectedToolbar ? this.defaultSelectedToolbar : null
-    }
   },
 
   props: {
@@ -73,6 +67,12 @@ export default {
     id: {
       type: String,
       default: 'image-result'
+    }
+  },
+
+  data () {
+    return {
+      selectedToolbar: this.defaultSelectedToolbar ? this.defaultSelectedToolbar : null
     }
   },
 

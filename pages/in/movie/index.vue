@@ -16,13 +16,12 @@
       >
         <template v-slot:cell(posters)="data">
           <b-img
-            width="100"
-            fluid
             v-for="poster in data.item.posters"
             :key="poster.ID"
             :src="poster.path"
-          >
-          </b-img>
+            width="100"
+            fluid
+          />
         </template>
         <template v-slot:cell(actions)>
           <b-dropdown right text="Aksi" class="m-md-2">

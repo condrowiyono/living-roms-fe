@@ -44,5 +44,19 @@ export default {
   [types.CREATE_MOVIE_ERROR] (state, error) {
     state.isCreatingMovie = false
     state.creatingMovieError = error
+  },
+
+  [types.DELETE_MOVIE] (state) {
+    state.isDeletingMovie = true
+    state.deletingMovieError = null
+  },
+
+  [types.DELETE_MOVIE_SUCCESS] (state) {
+    state.isDeletingMovie = false
+  },
+
+  [types.DELETE_MOVIE_ERROR] (state, error) {
+    state.isDeletingMovie = false
+    state.deletingMovieError = error
   }
 }

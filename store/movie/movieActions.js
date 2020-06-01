@@ -41,5 +41,16 @@ export default ({ movieService }) => ({
     } catch (error) {
       commit(types.CREATE_MOVIE_ERROR, error)
     }
+  },
+
+  async [types.DELETE_MOVIE] ({ commit }, id) {
+    commit(types.DELETE_MOVIE)
+
+    try {
+      await movieService.delete(id)
+      commit(types.DELETE_MOVIE_SUCCESS)
+    } catch (error) {
+      commit(types.DELETE_MOVIE_ERROR, error)
+    }
   }
 })

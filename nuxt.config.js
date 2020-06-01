@@ -24,13 +24,16 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/scss/custom.scss'
+    '~/assets/scss/custom.scss',
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/toast'
+    '@/plugins/toast',
+    '@/plugins/bootstrap',
+    '@/plugins/fontawesome.js'
   ],
   /*
   ** Nuxt.js dev-modules

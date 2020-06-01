@@ -2,15 +2,15 @@
   <div class="back-office">
     <b-navbar class="navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <b-navbar-brand class="col-sm-3 col-md-2 mr-0">
-        NavBar
+        Living Rooms CMS
       </b-navbar-brand>
-      <b-navbar-nav class="w-full px-4">
+      <b-navbar-nav class="w-100 px-4">
         <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
       </b-navbar-nav>
-      <b-navbar-nav class="pr-8">
+      <b-navbar-nav class="pr-8 ml-auto">
         <b-nav-item-dropdown right>
           <template v-slot:button-content>
-            Nama
+            Menu
           </template>
           <b-dropdown-item @click="$router.push('/')">
             Ke Halaman Utama
@@ -27,10 +27,10 @@
           <div class="sidebar-sticky">
             <b-nav class="flex-column">
               <b-nav-item :to="{ name: 'in-movie' }">
-                <b-icon-house /> Movie
+                <font-awesome-icon icon="film" /> Movie
               </b-nav-item>
               <b-nav-item :to="{ name: 'in-person' }">
-                <b-icon-house /> People
+                <font-awesome-icon icon="user" /> People
               </b-nav-item>
             </b-nav>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -55,8 +55,7 @@ import {
   BDropdownItem,
   BContainer,
   BRow,
-  BNav,
-  BIconHouse
+  BNav
 } from 'bootstrap-vue'
 
 export default {
@@ -69,8 +68,7 @@ export default {
     BDropdownItem,
     BContainer,
     BRow,
-    BNav,
-    BIconHouse
+    BNav
   },
 
   methods: {

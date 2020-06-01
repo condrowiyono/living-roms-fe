@@ -7,5 +7,8 @@ export default () => ({
   movie: {},
 
   isCreatingMovie: false,
-  creatingMovieError: null
+  creatingMovieError: null,
+
+  isDeletingMovie: false,
+  deletingMovieError: null
 })

@@ -20,4 +20,10 @@ export default class sampleLinkService {
 
     return data
   }
+
+  async delete (id) {
+    const { data } = await this._http.delete(`/movie/${id}`)
+
+    return data
+  }
 }

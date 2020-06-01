@@ -6,7 +6,10 @@
     @ok="handleSubmit"
     size="lg"
   >
-    <b-form-group label="Pilih Penyedia">
+    <b-form-group
+      label-cols="3"
+      label="Pilih Penyedia"
+    >
       <b-form-select
         v-model="form.source"
         :options="options"
@@ -14,6 +17,7 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="form.source === 'youtube'"
       label="Video ID"
     >
@@ -25,6 +29,7 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="form.source=== 'url'"
       label="URL"
     >
@@ -36,6 +41,7 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="form.source === 'gdriveplayerus'"
       label="IMDB ID"
       class="mb-2"
@@ -47,11 +53,16 @@
         debounce="500"
       />
     </b-form-group>
-    <b-form-input
-      v-model="iframeURL"
-      class="my-2"
-      disabled
-    />
+    <b-form-group
+      label-cols="3"
+      label="URL"
+    >
+      <b-form-input
+        v-model="iframeURL"
+        class="my-2"
+        disabled
+      />
+    </b-form-group>
     <b-embed
       :src="iframeURL"
       type="iframe"

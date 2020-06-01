@@ -4,5 +4,7 @@ export default {
 
   movies: state => state.movies,
   meta: state => state.meta,
-  movie: state => state.movie
+  movie: state => state.movie,
+
+  isUpdatingMovie: state => state.isUpdatingMovie
 }

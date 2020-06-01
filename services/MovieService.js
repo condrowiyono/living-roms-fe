@@ -26,4 +26,10 @@ export default class sampleLinkService {
 
     return data
   }
+
+  async update (id, payload) {
+    const { data } = await this._http.put(`/movie/${id}`, payload)
+
+    return data
+  }
 }

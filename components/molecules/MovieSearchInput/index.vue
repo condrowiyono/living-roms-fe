@@ -3,6 +3,7 @@
     v-model="data"
     :data="tmdbResults"
     :serializer="item => item.title"
+    placeholder="Search Movie..."
     @hit="handleSelectMovie($event.id)"
   >
     <template

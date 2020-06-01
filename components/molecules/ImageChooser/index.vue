@@ -6,7 +6,10 @@
     @ok="handleSubmit"
     size="lg"
   >
-    <b-form-group label="Pilih Sumber">
+    <b-form-group
+      label-cols="3"
+      label="Pilih Sumber"
+    >
       <b-form-select
         v-model="selected"
         :options="options"
@@ -14,12 +17,17 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="selected === 'url'"
       label="URL"
     >
-      <b-form-input v-model="form.url" debounce="500" />
+      <b-form-input
+        v-on:keyup.enter="handleURLEnter"
+        v-model="url"
+      />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="selected === 'google'"
       label="Query"
     >
@@ -40,6 +48,7 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="selected === 'duckduckgo'"
       label="Query"
     >
@@ -60,6 +69,7 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="selected === 'upload'"
     >
       <b-form-file
@@ -76,6 +86,8 @@
       </b-button>
     </b-form-group>
     <b-form-group
+      label-cols="3"
+      label="TMDB ID"
       v-if="selected === 'tmdb_banner'"
     >
       <movie-search-input
@@ -84,7 +96,7 @@
       />
       <card-image-container
         id="image-result-tmdb"
-        :loading="isFetchingMovie"
+        :loading="isFetchingDetail"
         :data="filteredResult"
         :toolbar-options="topImageOptions"
         :default-selected-toolbar="topImageSelected"
@@ -93,6 +105,8 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
+      label="TMDB ID"
       v-if="selected === 'tmdb_poster'"
     >
       <movie-search-input
@@ -101,7 +115,7 @@
       />
       <card-image-container
         id="image-result-tmdb"
-        :loading="isFetchingMovie"
+        :loading="isFetchingDetail"
         :data="filteredResult"
         :toolbar-options="topImageOptions"
         :default-selected-toolbar="topImageSelected"
@@ -110,19 +124,22 @@
       />
     </b-form-group>
     <b-form-group
+      label-cols="3"
       v-if="form.url"
       label="Preview"
     >
-      <div class="img-preview">
+      <div class="img-preview rounded bg-light border d-flex justify-content-center">
         <b-img-lazy
           :src="form.url"
+          :width="300"
           fluid
+          class="p-2"
         />
       </div>
       <b-form-input
         v-model="form.url"
         disabled
-        class="mt-2"
+        class="mt-2 small"
       />
     </b-form-group>
   </b-modal>
@@ -170,6 +187,7 @@ export default {
         { text: 'Top 10', value: 10 },
         { text: 'Semua', value: null }
       ],
+      url: '',
       filteredResult: [],
       imageQuery: '',
       tmdbQuery: '',
@@ -194,7 +212,7 @@ export default {
       imageResultDuckDuckGo: 'image/duckduckgo',
       imageResultGoogle: 'image/google',
       imageResultTMDB: 'tmdb/movieImage',
-      isFetchingMovie: 'tmdb/isFetchingMovie',
+      isFetchingDetail: 'tmdb/isFetchingDetail',
       tmdbResults: 'tmdb/results'
     }),
 
@@ -273,6 +291,10 @@ export default {
         await this.imageMovie({ tmdb: val, type: 'posters' })
         this.handleTopResultTMDB(this.topImageSelected)
       }
+    },
+
+    handleURLEnter () {
+      this.form.url = this.url
     },
 
     topResult (array, n) {

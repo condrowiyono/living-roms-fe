@@ -10,5 +10,8 @@ export default () => ({
   creatingMovieError: null,
 
   isDeletingMovie: false,
-  deletingMovieError: null
+  deletingMovieError: null,
+
+  isUpdatingMovie: false,
+  updatingMovie: null
 })

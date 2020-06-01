@@ -58,5 +58,19 @@ export default {
   [types.DELETE_MOVIE_ERROR] (state, error) {
     state.isDeletingMovie = false
     state.deletingMovieError = error
+  },
+
+  [types.UPDATE_MOVIE] (state) {
+    state.isUpdatingMovie = true
+    state.updatingMovie = null
+  },
+
+  [types.UPDATE_MOVIE_SUCCESS] (state) {
+    state.isUpdatingMovie = false
+  },
+
+  [types.UPDATE_MOVIE_ERROR] (state, error) {
+    state.isUpdatingMovie = false
+    state.updatingMovie = error
   }
 }

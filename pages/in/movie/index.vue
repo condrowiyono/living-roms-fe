@@ -14,13 +14,15 @@
         selectable
         responsive="sm"
       >
-        <template v-slot:cell(posters)="data">
+        <template v-slot:cell(title)="data">
           <b-img
             v-if="data.item.banners.length"
             :src="data.item.banners[0].path"
             width="150"
-            fluid
           />
+          <div class="font-weight-bold">
+            {{ data.item.title }}
+          </div>
         </template>
         <template v-slot:cell(countries)="data">
           <div
@@ -33,7 +35,7 @@
             v-if="data.item.countries.length > 3"
             class="text-secondary"
           >
-            dan lainnya ...
+            dan lainnya
           </div>
         </template>
         <template v-slot:cell(genres)="data">
@@ -47,7 +49,7 @@
             v-if="data.item.genres.length > 3"
             class="text-secondary"
           >
-            dan lainnya ...
+            dan lainnya
           </div>
         </template>
         <template v-slot:cell(actors)="data">
@@ -61,23 +63,23 @@
             v-if="data.item.actors.length > 3"
             class="text-secondary"
           >
-            dan lainnya ...
+            dan lainnya
           </div>
-        </template>
-        <template v-slot:cell(player)="data">
-          <a
-            :href="data.item.player.player_url"
-            target="_blank"
-          >
-            <span>
-              <b-icon-arrow-up-right />
-            </span>
-          </a>
         </template>
         <template v-slot:cell(actions)="data">
           <b-dropdown right text="Aksi">
-            <b-dropdown-item> <b-icon-pencil /> Edit </b-dropdown-item>
-            <b-dropdown-item @click="handleDelete(data.item.ID)"> <b-icon-trash /> Hapus</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'in-movie-edit-id', params: { id: data.item.ID }}">
+              <b-icon-pencil /> Edit
+            </b-dropdown-item>
+            <b-dropdown-item @click="handleDelete(data.item.ID)">
+              <b-icon-trash /> Hapus
+            </b-dropdown-item>
+            <b-dropdown-item
+              :href="data.item.player.player_url"
+              target="_blank"
+            >
+              <b-icon-arrow-up-right /> Lihat Player
+            </b-dropdown-item>
           </b-dropdown>
         </template>
       </b-table>
@@ -128,7 +130,7 @@ export default {
         page: 1,
         limit: 20
       },
-      fields: ['posters', 'title', 'countries', 'runtime', 'rated', 'release_date', 'genres', 'director', 'actors', 'player', 'actions'],
+      fields: ['title', 'countries', 'runtime', 'rated', 'release_date', 'genres', 'director', 'actors', 'actions'],
       selected: []
     }
   },

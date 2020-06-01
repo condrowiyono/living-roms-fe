@@ -52,5 +52,19 @@ export default ({ movieService }) => ({
     } catch (error) {
       commit(types.DELETE_MOVIE_ERROR, error)
     }
+  },
+
+  async [types.UPDATE_MOVIE] ({ commit }, { id, payload }) {
+    commit(types.UPDATE_MOVIE)
+
+    try {
+      const data = await movieService.update(id, payload)
+
+      commit(types.UPDATE_MOVIE_SUCCESS, data)
+
+      return data
+    } catch (error) {
+      commit(types.UPDATE_MOVIE_ERROR, error)
+    }
   }
 })

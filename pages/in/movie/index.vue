@@ -19,8 +19,18 @@
           :fields="fields"
           @row-selected="onRowSelected"
           selectable
-          responsive
+          responsive="lg"
         >
+          <template v-slot:head(title)>
+            <div> Tittle </div>
+            <div class="mt-2">
+              <b-form-input
+                v-on:keyup.enter="handleFetchMovie"
+                v-model="filter.title"
+                size="sm"
+              />
+            </div>
+          </template>
           <template v-slot:cell(title)="data">
             <b-img
               v-if="data.item.banners.length"
@@ -115,7 +125,8 @@ import {
   BDropdown,
   BDropdownItem,
   BIconArrowUpRight,
-  BOverlay
+  BOverlay,
+  BFormInput
 } from 'bootstrap-vue'
 
 export default {
@@ -131,14 +142,16 @@ export default {
     BDropdown,
     BDropdownItem,
     BIconArrowUpRight,
-    BOverlay
+    BOverlay,
+    BFormInput
   },
 
   data () {
     return {
       filter: {
         page: 1,
-        limit: 20
+        limit: 20,
+        title: ''
       },
       fields: ['title', 'countries', 'runtime', 'rated', 'release_date', 'genres', 'director', 'actors', 'actions'],
       selected: []

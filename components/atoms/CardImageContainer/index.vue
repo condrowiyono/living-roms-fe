@@ -1,44 +1,45 @@
 <template>
   <div>
     <loading :loading="loading" />
-    <b-form-radio-group
-      v-if="!loading && data.length"
-      :id="id"
-      v-model="selectedToolbar"
-      :options="toolbarOptions"
-      @change="handleToolbarChange"
-      buttons
-      size="sm"
-      class="w-100 flex justify-center py-2"
-    />
-    <div class="image-container">
-      <b-card-group
-        v-if="!loading"
-        columns
-      >
-        <b-card
-          v-for="image in data"
-          :key="image.thumbnail"
-          :img-src="image.thumbnail"
+    <div v-if="!loading && data.length">
+      <b-form-radio-group
+        :id="id"
+        v-model="selectedToolbar"
+        :options="toolbarOptions"
+        @change="handleToolbarChange"
+        buttons
+        size="sm"
+        class="w-100 flex justify-center py-2"
+      />
+      <div class="image-container">
+        <span
+          v-for="(image,idx) in data"
+          :key="idx"
           @click="handleSelectCard(image.image)"
-          img-alt="Image"
-          overlay
-          class="cursor-pointer"
-        />
-      </b-card-group>
+        >
+          <b-img-lazy
+            :src="image.thumbnail"
+            img-alt="Image"
+            class="cursor-pointer m-2"
+            blank-color="#ddd"
+            width="120"
+            fluid
+            thumbnail
+          />
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { BFormRadioGroup, BCardGroup, BCard } from 'bootstrap-vue'
+import { BFormRadioGroup, BImgLazy } from 'bootstrap-vue'
 import Loading from '~/components/atoms/Loading'
 
 export default {
   components: {
     BFormRadioGroup,
-    BCardGroup,
-    BCard,
+    BImgLazy,
     Loading
   },
 

@@ -8,17 +8,8 @@
         @row-selected="onRowSelected"
         selectable
       >
-        <template v-slot:cell(picture)="data">
-          <b-img
-            v-if="data.item.pictures.length"
-            :src="data.item.pictures[0].path"
-            width="80"
-            fluid
-            thumbnail
-          />
-        </template>
-        <template v-slot:cell(more)>
-          <a href=""> More Picture ... </a>
+        <template v-slot:cell(picture)>
+          <b-avatar />
         </template>
       </b-table>
       <b-pagination
@@ -35,7 +26,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { BTable, BPagination, BImg } from 'bootstrap-vue'
+import { BTable, BPagination, BAvatar } from 'bootstrap-vue'
 
 export default {
   name: 'Movie',
@@ -43,7 +34,7 @@ export default {
   components: {
     BTable,
     BPagination,
-    BImg
+    BAvatar
   },
 
   data () {
@@ -53,11 +44,7 @@ export default {
         limit: 20
       },
       fields: [
-        {
-          key: 'picture',
-          label: 'Picture',
-          thStyle: 'width: 120px'
-        },
+        'picture',
         'name',
         {
           key: 'more',

@@ -1,4 +1,4 @@
-import axios from './livingXios'
+import axios from './axiosService'
 import HttpService from './HttpService'
 import MovieService from './MovieService'
 import AuthService from './AuthService'

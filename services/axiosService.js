@@ -11,6 +11,6 @@ const OPTIONS = {
   }
 }
 
-const livingXios = axios.create(OPTIONS)
+const axiosService = axios.create(OPTIONS)
 
-export default livingXios
+export default axiosService

@@ -1,7 +1,7 @@
 {
-  "name": "living-rooms",
-  "version": "1.0.0",
-  "description": "living room services",
+  "name": "ruangtengah-dapur",
+  "version": "0.0.1",
+  "description": "Urusan dapur untuk ruangtengah",
   "author": "condro",
   "private": true,
   "scripts": {

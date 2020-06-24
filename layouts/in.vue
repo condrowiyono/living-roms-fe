@@ -2,7 +2,7 @@
   <div class="back-office">
     <b-navbar class="navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <b-navbar-brand class="col-sm-3 col-md-2 mr-0">
-        Living Rooms CMS
+        Dapur Ruangtengah
       </b-navbar-brand>
       <b-navbar-nav class="w-100 px-4">
         <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">

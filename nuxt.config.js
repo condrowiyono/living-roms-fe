@@ -49,8 +49,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     // '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
-    'nuxt-purgecss'
+    '@nuxtjs/dotenv'
   ],
   router: {
     linkActiveClass: 'active'
@@ -71,8 +70,5 @@ module.exports = {
     extractCSS: true,
     extend (config, ctx) {
     }
-  },
-  purgeCSS: {
-    mode: 'postcss'
   }
 }

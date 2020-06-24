@@ -42,7 +42,6 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "node-sass": "^4.11.0",
     "nodemon": "1.18.7",
-    "nuxt-purgecss": "^0.2.1",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^2.0.0",

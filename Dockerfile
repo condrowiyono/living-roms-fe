@@ -1,8 +1,8 @@
 FROM node:10.13.0-alpine AS build
 WORKDIR /app
+ADD . /app/
 
-ADD . .
-RUN yarn install
+RUN yarn
 RUN yarn build
 
 FROM node:10.13.0-alpine
@@ -18,6 +18,9 @@ COPY --from=build /app/.env .env
 
 RUN yarn install --production
 
-ENV NODE_ENV="production"
+# set app serving to permissive / assigned
+ENV NUXT_HOST=0.0.0.0
+# set app port
+ENV NUXT_PORT=5000
 
 CMD ["node", "server/index.js"]

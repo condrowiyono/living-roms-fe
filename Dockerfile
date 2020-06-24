@@ -1,21 +1,13 @@
 FROM node:lts-alpine as build
 WORKDIR /app
+ADD . /app/
 
-ADD . .
-RUN yarn install
+# global install & update
+RUN npm i -g npm && npm i -g yarn
+
+RUN rm yarn.lock
+RUN yarn
 RUN yarn build
 
-FROM node:lts-alpine 
-WORKDIR /app
-
-COPY --from=build /app/package.json package.json
-COPY --from=build /app/yarn.lock yarn.lock
-COPY --from=build /app/nuxt.config.js nuxt.config.js
-COPY --from=build /app/.nuxt .nuxt
-COPY --from=build /app/.env .env
-
-RUN yarn install --production
-
-ENV NODE_ENV="production"
-
-CMD ["yarn", "start"]
+# start command
+CMD [ "yarn", "start" ]

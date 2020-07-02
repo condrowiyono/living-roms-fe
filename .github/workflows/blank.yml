@@ -23,7 +23,7 @@ jobs:
     - name: Make envfile
       uses: SpicyPizza/create-envfile@v1
       with:
-        envkey_API_URL: 'http://128.199.141.235:9000'
+        envkey_API_URL: 'https://api.ruangtengah.xyz/'
         file_name: .env
     
     # Runs a single command using the runners shell

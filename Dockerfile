@@ -7,8 +7,8 @@ RUN yarn
 RUN yarn build
 
 ENV HOST 0.0.0.0
-ENV PORT 5000
-EXPOSE 5000
+ENV PORT 3000
+EXPOSE 3000
 
 # start command
 CMD [ "yarn", "start" ]

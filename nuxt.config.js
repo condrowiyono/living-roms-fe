@@ -67,6 +67,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    // analyze: true,
     extractCSS: true,
     extend (config, ctx) {
     }

@@ -5,4 +5,4 @@ ADD . /app/
 RUN yarn
 RUN yarn build
 
-CMD ["node", "server/index.js"]
+CMD ["yarn", "start"]

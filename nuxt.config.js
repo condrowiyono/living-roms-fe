@@ -73,6 +73,6 @@ module.exports = {
     }
   },
   server: {
-    port: 5000
+    port: 3000
   }
 }
